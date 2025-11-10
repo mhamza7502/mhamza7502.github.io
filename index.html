@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My Apps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/assets/css/site.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>My Apps</h1>
+    <p>Select an application:</p>
+  </header>
+
+  <main class="wrap">
+    <nav class="grid">
+      <a class="card" href="/apps/rabbana/">
+        <h2>40 Rabbana</h2>
+        <p>Word-by-word, audio, BN/EN meanings.</p>
+      </a>
+
+      <a class="card" href="/apps/quran-player/">
+        <h2>Qur’an Player</h2>
+        <p>Ayah-by-ayah playback & bookmarking.</p>
+      </a>
+
+      <a class="card" href="/apps/service-now-tools/">
+        <h2>ServiceNow Tools</h2>
+        <p>Utilities and demos.</p>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="wrap">
+    <p>© <span id="y"></span> Your Name</p>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
