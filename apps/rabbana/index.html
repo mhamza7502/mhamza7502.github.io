@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <title>40 Rabbana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Default Uthmani-friendly font (fallback chain handled in CSS) -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri+Quran&display=swap" rel="stylesheet">
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="ar-uthmani">
+  <noscript>
+    <div style="padding:12px; background:#ffe4e6; color:#6b000c; text-align:center; font-family:system-ui,Segoe UI,Arial">
+      This app needs JavaScript enabled.
+    </div>
+  </noscript>
+
+  <div class="wrap">
+    <!-- top bar -->
+    <div class="topbar">
+      <div class="title">40 Rabbana</div>
+      <div class="controls" style="margin:0">
+        <label for="fontSel">Arabic Font:</label>
+        <select id="fontSel">
+          <option value="uth">Uthmani (Amiri)</option>
+          <option value="cal">Calcutta (IndoPak/Nastaleeq)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- short BN instructions -->
+    <div class="bn-instr">
+      নির্দেশনা: উপরের তালিকা থেকে দু‘আ নির্বাচন করুন। <b>Play Dua</b> দিলে সম্পূর্ণ দু‘আ বাজবে।
+      <b>Repeat ×N</b> দিলে N বার চলবে; <b>Auto-advance</b> অন থাকলে পরের দু‘আতে যাবে।
+      অর্থ অংশে <b>English Meaning</b> → <b>বাংলা অর্থ</b> → <b>শব্দে-শব্দে</b> (বামে বাংলা, মাঝে English, ডানে Arabic)।
+    </div>
+
+    <!-- controls row -->
+    <div class="controls">
+      <label for="duaSel">Dua:</label>
+      <select id="duaSel"></select>
+
+      <button class="btn" id="prevBtn">◀ Prev</button>
+      <button class="btn" id="nextBtn">Next ▶</button>
+
+      <button class="btn" id="playBtn">Play Dua</button>
+
+      <label>Repeat ×
+        <input type="number" id="rpt" min="1" max="20" value="1" style="width:4.2rem">
+      </label>
+
+      <label style="display:flex;align-items:center;gap:.4rem">
+        <input type="checkbox" id="adv"> Auto-advance
+      </label>
+    </div>
+
+    <!-- audio player + status -->
+    <div class="player">
+      <audio id="audio" controls preload="metadata" style="width:100%"></audio>
+    </div>
+    <p class="note" id="status"></p>
+
+    <!-- the dua card renders here -->
+    <div id="duaBox"></div>
+  </div>
+
+  <!-- data first, then app logic -->
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
