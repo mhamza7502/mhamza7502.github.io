@@ -1,0 +1,80 @@
+/* Calcutta (historic) approximation via IndoPak Nastaleeq */
+@font-face{
+  font-family: "CalcuttaIndoPak";
+  src: url("https://static-cdn.tarteel.ai/qul/fonts/nastaleeq/Hanafi/normal-v4.2.2/with-waqf-lazmi/font.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root{
+  --paper:#fbfaf7; --ink:#0f172a; --muted:#5b6472; --accent:#7bb38b; --accent-weak:#e8f3ec; --line:#e6e1d9;
+  --arFont:"Amiri Quran","KFGQPC Uthmanic Script HAFS","Scheherazade New","Noto Naskh Arabic",serif; /* default */
+}
+body.ar-calcutta{ --arFont:"CalcuttaIndoPak","Amiri Quran","Scheherazade New","Noto Naskh Arabic",serif; }
+
+html,body{
+  margin:0; padding:0; background:var(--paper); color:var(--ink);
+  font-family:var(--arFont);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+.wrap{ max-width:1100px; margin:24px auto; padding:0 16px }
+
+/* Header */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:8px 0 6px; border-bottom:1px solid var(--line);
+}
+.title{
+  direction:ltr; text-align:left; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+  font-size:1.35rem; font-weight:800; color:#0d3b27; letter-spacing:.2px;
+}
+
+.bn-instr{
+  direction:ltr; text-align:left; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+  background:var(--accent-weak); border:1px solid #cfe3d7; color:#0e3a26;
+  padding:10px 12px; border-radius:12px; margin:10px 0 14px; font-size:1rem;
+}
+
+/* Controls */
+.controls{ display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; direction:ltr; margin:10px 0 }
+select, .btn, input[type="number"], input[type="checkbox"]{
+  font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+  font-size:1rem; padding:.45rem .6rem; border:1px solid var(--line); background:#fff; border-radius:12px;
+}
+.btn{ cursor:pointer } .btn:hover{ background:#f4faf6 }
+.player{ margin:8px 0 }
+.note{ direction:ltr; text-align:left; color:var(--muted); font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial; font-size:.98rem }
+
+/* Card per dua */
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  padding:16px 14px; margin:14px 0 18px; box-shadow:0 2px 8px rgba(16,24,40,.04)
+}
+.dua-title{
+  direction:ltr; text-align:left; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial;
+  font-weight:700; color:#0d3b27; margin:0 0 6px; letter-spacing:.2px;
+}
+
+/* Main Arabic line */
+.dua-ar{
+  font-family:var(--arFont);
+  font-size:2.9rem; line-height:1.9; margin:6px 0 10px;
+  letter-spacing:0; word-spacing:0; font-kerning:normal;
+}
+
+/* Full meanings */
+.meaning{
+  border-left:4px solid var(--accent); background:#fafcfb; padding:10px 12px; border-radius:10px;
+  margin:8px 0 12px; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial
+}
+.meaning h4{ margin:.1rem 0 .35rem; font-size:1.02rem; color:#0d3b27 }
+.meaning p{ margin:.1rem 0; font-size:1.02rem; color:#1b2635; line-height:1.5 }
+
+/* WBW table */
+.wbw{ overflow-x:auto; direction:rtl; margin:.3rem 0 .4rem }
+table{ border-collapse:collapse; width:100%; min-width:860px }
+th,td{ border:1px solid var(--line); background:#fff; padding:.58rem .72rem }
+th{ background:#f7f6f3; font-weight:800; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial; font-size:1.06rem; color:#0e3a26 }
+td.bn, td.en{ direction:ltr; text-align:left; font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial; font-size:1.18rem; color:#0f1f33 }
+/* per-word Arabic slightly reduced but bold/clear */
+td.ar{ text-align:right; font-family:var(--arFont); font-weight:800; font-size:2.45rem; line-height:2.1; letter-spacing:0; word-spacing:0; white-space:nowrap; color:#0b1b2a }
+tbody tr:hover td{ background:#fffdf6 }
