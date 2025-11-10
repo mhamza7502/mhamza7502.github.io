@@ -1,7 +1,9 @@
 /* =======================
-   40 Rabbana Index (static BN summary)
-   EN meaning + audio are fetched live per ayah
+   40 Rabbana — Index (titles + refs + BN full meaning)
+   English meaning & audio are fetched live per ayah via api.alquran.cloud
+   WBW contains per-ayah word maps used for the table
    ======================= */
+
 const DUA_INDEX = [
   {id:1,  title:"2:127 — Rabbana taqabbal minnā", refs:["2:127"], bnFull:"ইবরাহীম ও ইসমাঈল কাবার ভিত্তি তুলতে তুলতে বললেন: হে আমাদের রব, এটি কবুল করুন—আপনি সর্বশ্রোতা, সর্বজ্ঞ।"},
   {id:2,  title:"2:128 — Rabbana wajʿalnā muslimayn", refs:["2:128"], bnFull:"হে আমাদের রব, আমাদেরকে আপনার অনুগত বানান, বংশ থেকে অনুগত উম্মত দিন; রীতিগুলো দেখান, তাওবা কবুল করুন—আপনি তাওবা কবুলকারী, পরম দয়ালু।"},
@@ -45,9 +47,9 @@ const DUA_INDEX = [
   {id:40, title:"23:118 — Rabbighfir warḥam", refs:["23:118"], bnFull:"প্রভু, ক্ষমা করুন, দয়া করুন—আপনি সেরা দয়াশীল।"}
 ];
 
-/* ========= WBW DICTIONARY =========
-   Hand-mapped word-by-word for Duas 1–30
-   (Option B: duplicates kept even if an ayah appears again later)
+/* ========= Word-by-Word (WBW) =========
+   Hand-mapped for Duas 1–30 (duplicates kept even if ayah repeats later)
+   For 31–40, the app will still work (shows Arabic + EN + BN) but WBW table will be empty until we add those.
 */
 const WBW = {
   /* 1) 2:127 */
@@ -70,7 +72,7 @@ const WBW = {
 
   /* 2) 2:128 */
   "2:128":[
-    {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
+    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"আমাদের রব"},
     {ar:"وَٱجْعَلْنَا",en:"and make us",bn:"এবং আমাদের করুন"},
     {ar:"مُسْلِمَيْنِ",en:"two Muslims (submissive)",bn:"দুইজন মুসলিম/আত্মসমর্পিত"},
     {ar:"لَكَ",en:"to You",bn:"আপনার জন্য"},
@@ -108,7 +110,7 @@ const WBW = {
 
   /* 4) 2:250 */
   "2:250":[
-    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"আমাদের রব"},
+    {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
     {ar:"أَفْرِغْ",en:"pour forth",bn:"বর্ষণ করুন"},
     {ar:"عَلَيْنَا",en:"upon us",bn:"আমাদের উপর"},
     {ar:"صَبْرًا",en:"patience",bn:"ধৈর্য"},
@@ -132,7 +134,7 @@ const WBW = {
 
     {ar:"رَبَّنَا",en:"Our Lord",bn:"হে আমাদের রব"},
     {ar:"وَلَا",en:"and do not",bn:"এবং করবেন না"},
-    {ar:"تَحْمِلْ",en:"lay upon",bn:"বোঝা চাপাবেন"},
+    {ar:"তَحْمِلْ".replace("ত","ت"),en:"lay upon",bn:"বোঝা চাপাবেন"},
     {ar:"عَلَيْنَا",en:"upon us",bn:"আমাদের উপর"},
     {ar:"إِصْرًا",en:"a burden",bn:"একটি ভারি বোঝা"},
     {ar:"كَمَا",en:"as",bn:"যেমন"},
@@ -215,7 +217,7 @@ const WBW = {
 
   /* 9) 3:191 */
   "3:191":[
-    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"আমাদের রব"},
+    {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
     {ar:"مَا",en:"not",bn:"না"},
     {ar:"خَلَقْتَ",en:"You created",bn:"আপনি সৃষ্টি করেছেন"},
     {ar:"هَٰذَا",en:"this",bn:"এগুলো"},
@@ -253,7 +255,7 @@ const WBW = {
     {ar:"ٱغْفِرْ",en:"forgive",bn:"ক্ষমা করুন"},
     {ar:"لَنَا",en:"for us",bn:"আমাদেরকে"},
     {ar:"ذُنُوبَنَا",en:"our sins",bn:"আমাদের গুনাহসমূহ"},
-    {ar:"وَإِسْرَافَنَا",en:"and our excess",bn:"এবং আমাদের বাড়াবাড়ি"},
+    {ar:"وَإِسْرَافَنَا",en:"and our excess",bn:"এবং আমাদের বাড়াবাড়ি"},
     {ar:"فِي",en:"in",bn:"ভিতরে"},
     {ar:"أَمْرِنَا",en:"our affair",bn:"আমাদের কাজে"},
     {ar:"وَثَبِّتْ",en:"and make firm",bn:"এবং দৃঢ় করুন"},
@@ -287,7 +289,7 @@ const WBW = {
 
   /* 13) 5:83 */
   "5:83":[
-    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"আমাদের রব"},
+    {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
     {ar:"آمَنَّا",en:"we have believed",bn:"আমরা ঈমান এনেছি"},
     {ar:"فَٱكْتُبْنَا",en:"so write us",bn:"অতএব আমাদের লিখে নিন"},
     {ar:"مَعَ",en:"with",bn:"সাথে"},
@@ -311,7 +313,7 @@ const WBW = {
 
   /* 15) 7:47 */
   "7:47":[
-    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"আমাদের রব"},
+    {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
     {ar:"لَا",en:"do not",bn:"করবেন না"},
     {ar:"تَجْعَلْنَا",en:"place us",bn:"আমাদের করুন"},
     {ar:"مَعَ",en:"with",bn:"সাথে"},
@@ -334,10 +336,10 @@ const WBW = {
   /* 17) 7:126 */
   "7:126":[
     {ar:"رَبَّنَا",en:"Our Lord",bn:"আমাদের রব"},
-    {ar:"أَفْرِغْ",en:"pour forth",bn:"বর্ষণ করুন"},
+    {ar:"অَفْرِغْ".replace("অ","أ"),en:"pour forth",bn:"বর্ষণ করুন"},
     {ar:"عَلَيْنَا",en:"upon us",bn:"আমাদের উপর"},
     {ar:"صَبْرًا",en:"patience",bn:"ধৈর্য"},
-    {ar:"وَتَوَفَّنَا",en:"and cause us to die",bn:"এবং আমাদের মৃত্যু দিন"},
+    {ar:"وَتَوَفَّনَا",en:"and cause us to die",bn:"এবং আমাদের মৃত্যু দিন"},
     {ar:"مُسْلِمِينَ",en:"as Muslims",bn:"মুসলিম অবস্থায়"}
   ],
 
@@ -391,7 +393,7 @@ const WBW = {
     {ar:"ٱلصَّلَاةِ",en:"the prayer",bn:"সালাতের"},
     {ar:"وَمِن",en:"and from",bn:"এবং আমার"},
     {ar:"ذُرِّيَّتِي",en:"my offspring",bn:"সন্তানদের মধ্যে"},
-    {ar:"রَبَّنَا".replace("র","ر"),en:"Our Lord",bn:"হে আমাদের রব"},
+    {ar:"رَبَّنَا",en:"Our Lord",bn:"হে আমাদের রব"},
     {ar:"وَتَقَبَّلْ",en:"and accept",bn:"এবং কবুল করুন"},
     {ar:"دُعَاءِ",en:"my supplication",bn:"আমার দু’আ"}
   ],
@@ -478,7 +480,7 @@ const WBW = {
     {ar:"لَّدُنكَ",en:"Your presence",bn:"আপনার পক্ষ থেকে"},
     {ar:"رَحْمَةً",en:"mercy",bn:"রহমত"},
     {ar:"وَهَيِّئْ",en:"and prepare",bn:"এবং প্রস্তুত করুন"},
-    {ar:"লَنَا".replace("ল","ل"),en:"for us",bn:"আমাদের জন্য"},
+    {ar:"لَنَا",en:"for us",bn:"আমাদের জন্য"},
     {ar:"مِنْ",en:"from/of",bn:"থেকে/এর"},
     {ar:"أَمْرِنَا",en:"our affair",bn:"আমাদের বিষয়ে"},
     {ar:"رَشَدًا",en:"right guidance",bn:"সঠিক পথ"}
@@ -564,4 +566,102 @@ const WBW = {
     {ar:"ٱلْقَوْمِ",en:"the people",bn:"কওম"},
     {ar:"ٱلظَّالِمِينَ",en:"the wrongdoers",bn:"যালিমদের"}
   ]
+  "28:24": [
+  {ar:"فَسَقَىٰ", en:"then he watered", bn:"তারপর তিনি পানি পান করালেন"},
+  {ar:"لَهُمَا", en:"for them two", bn:"তাদের দুজনের জন্য"},
+  {ar:"ثُمَّ", en:"then", bn:"পরে"},
+  {ar:"تَوَلَّىٰ", en:"he turned away", bn:"সরে গেলেন"},
+  {ar:"إِلَى", en:"to/towards", bn:"দিকে"},
+  {ar:"ٱلظِّلِّ", en:"the shade", bn:"ছায়ায়"},
+  {ar:"فَقَالَ", en:"then he said", bn:"অতঃপর তিনি বললেন"},
+  {ar:"رَبِّ", en:"My Lord", bn:"হে আমার প্রভু"},
+  {ar:"إِنِّي", en:"indeed I", bn:"নিশ্চয়ই আমি"},
+  {ar:"لِمَا", en:"for whatever", bn:"যা কিছু"},
+  {ar:"أَنزَلْتَ", en:"You send down", bn:"আপনি নাযিল করবেন"},
+  {ar:"إِلَيَّ", en:"to me", bn:"আমার নিকট"},
+  {ar:"مِنْ", en:"of/from", bn:"থেকে/এর"},
+  {ar:"خَيْرٍ", en:"good", bn:"কল্যাণ"},
+  {ar:"فَقِيرٌ", en:"needy", bn:"অতি অভাবগ্রস্ত"}
+],
+
+/* 32) 59:10 — Rabbana ighfir lanā ... lā tajʿal fī qulūbinā ghillā */
+"59:10": [
+  {ar:"وَٱلَّذِينَ", en:"and those who", bn:"আর তারা যারা"},
+  {ar:"جَاءُوا", en:"came", bn:"এসেছে"},
+  {ar:"مِنۢ", en:"after", bn:"পর থেকে"},
+  {ar:"بَعْدِهِمْ", en:"them", bn:"তাদের"},
+  {ar:"يَقُولُونَ", en:"say", bn:"বলে"},
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"ٱغْفِرْ", en:"forgive", bn:"ক্ষমা করুন"},
+  {ar:"لَنَا", en:"us", bn:"আমাদেরকে"},
+  {ar:"وَلِإِخْوَانِنَا", en:"and our brothers", bn:"এবং আমাদের ভাইদেরকে"},
+  {ar:"ٱلَّذِينَ", en:"those who", bn:"যারা"},
+  {ar:"سَبَقُونَا", en:"preceded us", bn:"আমাদের আগে এগিয়েছে"},
+  {ar:"بِٱلْإِيمَٰنِ", en:"in faith", bn:"ঈমানে"},
+  {ar:"وَلَا", en:"and do not", bn:"এবং করবেন না"},
+  {ar:"تَجْعَلْ", en:"place/put", bn:"রাখবেন না"},
+  {ar:"فِي", en:"in", bn:"ভিতরে"},
+  {ar:"قُلُوبِنَا", en:"our hearts", bn:"আমাদের অন্তরে"},
+  {ar:"غِلًّا", en:"any rancor", bn:"বিদ্বেষ"},
+  {ar:"لِّلَّذِينَ", en:"towards those who", bn:"যাদের প্রতি"},
+  {ar:"آمَنُوا", en:"believed", bn:"ঈমান এনেছে"},
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"إِنَّكَ", en:"indeed You", bn:"নিশ্চয়ই আপনি"},
+  {ar:"رَءُوفٌ", en:"Most Kind", bn:"পরম দয়ালু"},
+  {ar:"رَّحِيمٌ", en:"Most Merciful", bn:"পরম করুণাময়"}
+],
+
+/* 33) 60:4 — Rabbana ʿalayka tawakkalnā ... wa ilayka l-maṣīr */
+"60:4": [
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"عَلَيْكَ", en:"upon You", bn:"আপনার উপর"},
+  {ar:"تَوَكَّلْنَا", en:"we relied", bn:"আমরা ভরসা করেছি"},
+  {ar:"وَإِلَيْكَ", en:"and to You", bn:"এবং আপনার দিকেই"},
+  {ar:"أَنَبْنَا", en:"we turn (repent)", bn:"আমরা প্রত্যাবর্তন করেছি"},
+  {ar:"وَإِلَيْكَ", en:"and to You", bn:"এবং আপনার দিকেই"},
+  {ar:"ٱلْمَصِيرُ", en:"is the final return", bn:"চূড়ান্ত প্রত্যাবর্তন"}
+],
+
+/* 34) 60:5 — Rabbana lā tajʿalnā fitnatan ... ʾanta l-ʿazīzu l-ḥakīm */
+"60:5": [
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"لَا", en:"do not", bn:"করবেন না"},
+  {ar:"تَجْعَلْنَا", en:"make us", bn:"আমাদের করে দিবেন না"},
+  {ar:"فِتْنَةً", en:"a trial/temptation", bn:"ফিতনা/পরীক্ষা"},
+  {ar:"لِّلَّذِينَ", en:"for those who", bn:"যাদের জন্য"},
+  {ar:"كَفَرُوا", en:"disbelieved", bn:"কুফরি করেছে"},
+  {ar:"وَٱغْفِرْ", en:"and forgive", bn:"এবং ক্ষমা করুন"},
+  {ar:"لَنَا", en:"us", bn:"আমাদেরকে"},
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"إِنَّكَ", en:"indeed You", bn:"নিশ্চয়ই আপনি"},
+  {ar:"أَنتَ", en:"You are", bn:"আপনি"},
+  {ar:"ٱلْعَزِيزُ", en:"the All-Mighty", bn:"পূর্ণ পরাক্রমশালী"},
+  {ar:"ٱلْحَكِيمُ", en:"the All-Wise", bn:"পরম প্রজ্ঞাময়"}
+],
+
+/* 35) 66:8 — Rabbana ʾatmim lanā nūranā wa-ghfir lanā ... */
+"66:8": [
+  {ar:"رَبَّنَا", en:"Our Lord", bn:"হে আমাদের রব"},
+  {ar:"أَتْمِمْ", en:"complete", bn:"পূর্ণ করুন"},
+  {ar:"لَنَا", en:"for us", bn:"আমাদের জন্য"},
+  {ar:"نُورَنَا", en:"our light", bn:"আমাদের নূর"},
+  {ar:"وَٱغْفِرْ", en:"and forgive", bn:"এবং ক্ষমা করুন"},
+  {ar:"لَنَا", en:"us", bn:"আমাদেরকে"},
+  {ar:"إِنَّكَ", en:"indeed You", bn:"নিশ্চয়ই আপনি"},
+  {ar:"عَلَى", en:"over", bn:"উপর"},
+  {ar:"كُلِّ", en:"every", bn:"সমস্ত"},
+  {ar:"شَيْءٍ", en:"thing", bn:"বস্তু/কিছু"},
+  {ar:"قَدِيرٌ", en:"All-Powerful", bn:"ক্ষমতাবান"}
+],
+
+/* 40) 23:118 — Rabbighfir wa rḥam wa anta khayru r-rāḥimīn */
+"23:118": [
+  {ar:"وَقُلْ", en:"and say", bn:"বলুন"},
+  {ar:"رَبِّ", en:"My Lord", bn:"হে আমার প্রভু"},
+  {ar:"ٱغْفِرْ", en:"forgive", bn:"ক্ষমা করুন"},
+  {ar:"وَٱرْحَمْ", en:"and have mercy", bn:"এবং দয়া করুন"},
+  {ar:"وَأَنتَ", en:"and You are", bn:"আর আপনি"},
+  {ar:"خَيْرُ", en:"the best of", bn:"সর্বোত্তম"},
+  {ar:"ٱلرَّاحِمِينَ", en:"those who show mercy", bn:"দয়াশীলদের মধ্যে"}
+]
 };
